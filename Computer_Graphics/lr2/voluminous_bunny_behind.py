@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image, ImageOps
-from parcer import v, f
+from lr1.parcer import v, f
 from psychedelic_bunny import barycentric_coordinates
 
 

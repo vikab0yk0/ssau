@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image, ImageOps
-from parcer import v
+from lr1.parcer import v
 
 
 SIZE = 2000

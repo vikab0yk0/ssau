@@ -1,4 +1,4 @@
-with open('model_1.obj') as file:
+with open('../model_1.obj') as file:
     v = []
     f = []
     for line in file:

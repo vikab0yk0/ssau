@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image, ImageOps
 from random import randint
-from parcer import v, f
+from lr1.parcer import v, f
 
 
 SIZE = 2000
