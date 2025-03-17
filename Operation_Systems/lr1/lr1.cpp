@@ -13,7 +13,7 @@ bool continueProgram() {
 }
 
 
-int main(){
+int main() {
     int input;
 
     do {

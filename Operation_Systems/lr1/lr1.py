@@ -1,3 +1,4 @@
+# Variant 3 python
 def is_valid_hex(hex_num):
     valid_chars = set('0123456789abcdefABCDEF')
     return set(hex_num).issubset(valid_chars)

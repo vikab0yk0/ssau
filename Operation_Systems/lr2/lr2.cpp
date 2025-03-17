@@ -40,8 +40,6 @@ int main(int argc, char *argv[]) {
             token = strtok(nullptr, " ");
         }
 
-        if (cmd_argc == 0) continue;
-
         handle_command(cmd_argc, cmd_argv);
     }
 
@@ -113,11 +111,6 @@ void print_help() {
 
 /*       COPY FILE       */
 
-bool file_exists(const char *path) {
-    struct stat buffer;
-    return (stat(path, &buffer) == 0);
-}
-
 void print_progress(size_t total_copied, size_t total_size) {
     size_t progress = (total_copied * PROGRESS_BAR_SIZE) / total_size;
     std::cout << "\rProgress: [";
@@ -131,13 +124,8 @@ void print_progress(size_t total_copied, size_t total_size) {
 }
 
 void copy_file(const char *src, const char *dest) {
-    if (strcmp(src, dest) == 0) {
+    if (!strcmp(src, dest)) {
         std::cerr << "Error: Source and destination files are the same." << std::endl;
-        return;
-    }
-
-    if (file_exists(dest)) {
-        std::cerr << "Error: Destination file '" << dest << "' already exists." << std::endl;
         return;
     }
 
