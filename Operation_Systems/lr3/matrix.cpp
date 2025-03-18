@@ -1,30 +1,6 @@
 #include "matrix.h"
 #include <cstdio>
 
-
-int read_int(const char* msg) {
-    std::cout << msg;
-    int input;
-    while (!(std::cin >> input) || std::cin.peek() != '\n') {
-        std::cin.clear();
-        while (std::cin.get() != '\n');
-        std::cout << "Input error. Retry input: ";
-    }
-    return input;
-}
-
-double read_double(const char* msg) {
-    std::cout << msg;
-    double input;
-    while (!(std::cin >> input) || std::cin.peek() != '\n') {
-        std::cin.clear();
-        while (std::cin.get() != '\n');
-        std::cout << "Input error. Retry input: ";
-    }
-    return input;
-}
-
-
 Matrix::Matrix(int r, int c) : rows(r), cols(c) {
     if (rows > 0 && cols > 0)
         data = new double[rows*cols];
@@ -83,22 +59,20 @@ Matrix Matrix::transpose() const {  // новый_индекс = (старый_�
 
 
 std::istream& operator>> (std::istream& in, Matrix& mat) {
-    mat.rows = read_int("Enter the number of rows: ");
-    mat.cols = read_int("Enter the number of columns: ");
+    if (&in == &std::cin) std::cout << "Enter the number of rows: ";
+    in >> mat.rows;
 
-    mat.data = new double[mat.rows*mat.cols];
+    if (&in == &std::cin) std::cout << "Enter the number of columns: ";
+    in >> mat.cols;
 
-    std::cout << "Enter the matrix elements: " << std::endl;
+    mat.data = new double[mat.rows * mat.cols];
+
+    if (&in == &std::cin) std::cout << "Enter the matrix elements:\n";
+
     for (int i = 0; i < mat.rows; ++i) {
         for (int j = 0; j < mat.cols; ++j) {
-            int size = snprintf(nullptr, 0, "Element [%d][%d]: ", i, j) + 1;
-
-            char* elem = new char[size];
-            snprintf(elem, size, "Element [%d][%d]: ", i, j);
-
-            mat.data[i * mat.cols + j] = read_double(elem);
-
-            delete[] elem;
+            if (&in == &std::cin) std::cout << "Element [" << i << "][" << j << "]: ";
+            in >> mat.data[i * mat.cols + j];
         }
     }
     return in;

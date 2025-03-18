@@ -5,10 +5,6 @@
 #include <fstream>
 
 
-int read_int(const char* msg);
-double read_double(const char* msg);
-
-
 class Matrix {
 private:
     int rows, cols;
