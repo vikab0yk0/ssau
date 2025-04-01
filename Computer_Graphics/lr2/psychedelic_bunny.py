@@ -2,21 +2,12 @@ import numpy as np
 from PIL import Image, ImageOps
 from random import randint
 from lr1.parcer import v, f
+from voluminous_bunny_behind import barycentric_coordinates
 
 
 SIZE = 2000
 RATIO = 10_000
 img_mat = np.zeros((SIZE, SIZE, 3), dtype=np.uint8)
-
-
-def barycentric_coordinates(point0, point1, point2, x, y):
-    (x0, y0, z0), (x1, y1, z1), (x2, y2, z2) = point0, point1, point2
-
-    lambda0 = ((x - x2) * (y1 - y2) - (x1 - x2) * (y - y2)) / ((x0 - x2) * (y1 - y2) - (x1 - x2) * (y0 - y2))
-    lambda1 = ((x0 - x2) * (y - y2) - (x - x2) * (y0 - y2)) / ((x0 - x2) * (y1 - y2) - (x1 - x2) * (y0 - y2))
-    lambda2 = 1.0 - lambda0 - lambda1
-
-    return lambda0, lambda1, lambda2
 
 
 def rand_triangle(point0, point1, point2, image):

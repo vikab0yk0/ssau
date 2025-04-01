@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image, ImageOps
 from lr1.parcer import v, f
-from psychedelic_bunny import barycentric_coordinates
+from voluminous_bunny_behind import barycentric_coordinates
 
 
 SIZE = 2000
