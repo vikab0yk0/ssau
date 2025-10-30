@@ -1,5 +1,5 @@
 function [x_min, f_min, calls, iters] = fibonacci_1d(f, a, b, tol, max_iters)
-% FIBONACCI Поиск минимума функции одной переменной методом Фибоначчи
+% FIBONACCI_1D Поиск минимума функции одной переменной методом Фибоначчи
 %
 % Входные параметры:
 %   f     - функция для минимизации
@@ -57,12 +57,8 @@ end
 function fib_sequence = generate_fib(a, b, tol)
     L0 = b-a;
     fib_sequence = [0, 1];
-    
-    if tol < 1e-8
-        tol = 1e-8;
-    end
-
     n=1;
+    
     while fib_sequence(end) < L0/tol
         fib_sequence(end+1) = fib_sequence(end) + fib_sequence(end-1);
         n = n+1;
