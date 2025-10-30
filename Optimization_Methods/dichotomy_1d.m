@@ -1,4 +1,4 @@
-function [x_min, f_min, calls, iters] = dichotomy_1d(f, a, b, eps, tol, max_iters)
+function [x_min, f_min, calls, iters] = dichotomy_1d(f, a, b, eps, max_iters)
 % DICHOTOMY_1D Поиск минимума функции одной переменной методом дихотомии
 %
 % Входные параметры:
@@ -29,13 +29,13 @@ function [x_min, f_min, calls, iters] = dichotomy_1d(f, a, b, eps, tol, max_iter
         f2 = f(x2);
 
         if f1<f2
-            b=x2;
+            b=mid;
         else
-            a=x1;
+            a=mid;
         end
         calls = calls +2;
 
-        if abs(f1 - f2) < tol
+        if b-a < eps*2
             break;
         end
     end

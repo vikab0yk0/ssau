@@ -5,6 +5,7 @@ function [x_min, f_min, calls, iters] = golden_ratio_1d(f, a, b, tol, max_iters)
 %   f   - функция, минимум которой ищем
 %   a,b - границы интервала поиска (a < b)
 %   tol - точность по значению функции (критерий остановки)
+%   max_iters - максимальное количество итераций
 %
 % Выходные параметры:
 %   x_min    - найденная точка минимума
@@ -24,9 +25,7 @@ function [x_min, f_min, calls, iters] = golden_ratio_1d(f, a, b, tol, max_iters)
     
     while iters < max_iters
         iters = iters+1;
-    
-        % fprintf('Итерация %d: [%.6f, %.6f], длина = %.6f\n', iters, a, b, b - a);
-    
+        
         if f1 < f2
             b = x2;
             x2 = x1;
@@ -40,9 +39,13 @@ function [x_min, f_min, calls, iters] = golden_ratio_1d(f, a, b, tol, max_iters)
             x2 = a + r*(b - a);
             f2 = f(x2);
         end
+
+        % fprintf('[%.6f, %.6f], Итерация %d: [%.6f, %.6f], длина = %.6f\n', x1, x2, iters, a, b, b - a);
+
         calls = calls+1;
     
-        if abs(f1 - f2) < tol
+        % if abs(f1 - f2) < tol
+        if b - a < tol            
             break;
         end
     end

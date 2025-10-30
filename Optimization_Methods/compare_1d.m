@@ -4,7 +4,7 @@ function results = compare_1d()
 
     functions_data = all_functions();
     
-    eps = 1e-5;
+    tol = 1e-3;
     max_iters = 1000;
     results = [];
     
@@ -16,11 +16,8 @@ function results = compare_1d()
         f = functions_data(ii).f;
         a = functions_data(ii).a;
         b = functions_data(ii).b;
-        
-        tol = calculate_tol(f, a, b, eps);
-        % tol = 1e-5;
 
-        fprintf('Интервал: [%.2f, %.2f], Точность: %.2e\n', a, b, tol);
+        fprintf('Интервал: [%.2f, %.2f], Точность: %.2e\n', a, b, 2*tol);
         
         methods = {'Дихотомия', 'Золотое сечение', 'Фибоначчи'};
         
@@ -28,11 +25,11 @@ function results = compare_1d()
             
             switch method_idx
                 case 1
-                    [x_min, f_min, calls, iters] = dichotomy_1d(f, a, b, eps, tol, max_iters);
+                    [x_min, f_min, calls, iters] = dichotomy_1d(f, a, b, tol, max_iters);
                 case 2
-                    [x_min, f_min, calls, iters] = golden_ratio_1d(f, a, b, tol, max_iters);
+                    [x_min, f_min, calls, iters] = golden_ratio_1d(f, a, b, tol*2, max_iters);
                 case 3
-                    [x_min, f_min, calls, iters] = fibonacci_1d(f, a, b, tol, max_iters);
+                    [x_min, f_min, calls, iters] = fibonacci_1d(f, a, b, calls);
             end
 
             fprintf('%s:\n', methods{method_idx});
@@ -41,7 +38,7 @@ function results = compare_1d()
         end
         
         % построение и сохранение графика для каждой функции
-        plot_function_result(f, a, b, x_min, f_min, functions_data(ii).name, ii);
+        % plot_function_result(f, a, b, x_min, f_min, functions_data(ii).name, ii);
     end
 end
 
