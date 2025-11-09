@@ -15,7 +15,7 @@ function [x_min, f_min, calls, iters] = fibonacci_1d(f, a, b, N)
 %   L_n - теоретическая длина интервала неопределенности
 %   iters - количество выполненных итераций
 
-    fib_sequence = generate_fib_sequence(N + 2);
+    fib_sequence = generate_fib_sequence(N + 1);
     
     iters = 0;
     calls = 0;
@@ -65,6 +65,7 @@ function [x_min, f_min, calls, iters] = fibonacci_1d(f, a, b, N)
     x_min = (a + b) / 2;
     f_min = f(x_min);
     calls = calls + 1;
+    
     % fprintf('\n\nМой в начале Ln: %.6f, Дикий Ln: %.6f\n\n', L_n, L_i);
 end
 
