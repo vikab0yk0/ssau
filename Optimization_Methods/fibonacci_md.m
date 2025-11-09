@@ -1,5 +1,5 @@
 function [x_min, f_min, calls, iters] = fibonacci_md(f, x1, x2, N)
-% FIBONACCI_ND Поиск минимума многомерной функции методом Фибоначчи вдоль направления
+% FIBONACCI_MD Поиск минимума многомерной функции методом Фибоначчи вдоль направления
 %
 % Входные параметры:
 %   f        - многомерная функция, минимум которой ищем (принимает вектор)
@@ -58,11 +58,11 @@ function [x_min, f_min, calls, iters] = fibonacci_md(f, x1, x2, N)
             f_right = f(x_right);
             calls = calls + 1;
         end
-        
+
         % fprintf('x1 = [');
-        % fprintf(' %.5f ', x1);
+        % fprintf(' %.5f ', x_start);
         % fprintf('] \t x2 = [');
-        % fprintf(' %.5f ', x2);
+        % fprintf(' %.5f ', x_end);
         % fprintf(']\n');
     end
 

@@ -3,8 +3,8 @@ clear; clc; close all;
 
 f_md = @(x) -sum(1 ./ (x.^4 + 2*x.^2 + 1)); % просто сумма по координатам
 
-x1 = [0;0;-10];  
-x2 = [0;0;10];  
+x1 = [0;0;0];  
+x2 = [10;-7;5];  
 eps = 1e-3;
 max_iters = 1000;
 
@@ -30,3 +30,10 @@ fprintf('Минимум: x = [ ');
 fprintf('%.5f ', x_min);
 fprintf(']; f(x) = %.5f\n', f_min);
 fprintf('Количество итераций: %d; вызовов: %d\n', iters, calls);
+
+% fprintf('\nМетод Координатного спуска\n');
+% [x_min, f_min, calls, iters] = coordinate_descent(f_md, x1, eps, max_iters);
+% fprintf('Минимум: x = [ ');
+% fprintf('%.5f ', x_min);
+% fprintf(']; f(x) = %.5f\n', f_min);
+% fprintf('Количество итераций: %d; вызовов: %d\n', iters, calls);
